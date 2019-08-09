@@ -149,11 +149,14 @@ class GameScene: SKScene {
     }
     
     func layoutStarterBullets(){
-        spawnBullet(speedOf: CGVector(dx: 500,dy: 0), at: CGPoint(x: 200, y: 50))
+        var randomNum = Int(arc4random_uniform(500))
+        spawnBullet(speedOf: CGVector(dx: randomNum,dy: 500-randomNum), at: CGPoint(x: 200, y: 50))
+        randomNum = Int(arc4random_uniform(500))
         //spawnBullet(speedOf: CGVector(dx: 500,dy: 500), at: CGPoint(x: 400, y: 50))
         //spawnBullet(speedOf: CGVector(dx: -500,dy: 0), at: CGPoint(x: 600, y: 50))
-        spawnBullet(speedOf: CGVector(dx: 500,dy: 0), at: CGPoint(x: 300, y: 200))
-        spawnBullet(speedOf: CGVector(dx: -500,dy: 0), at: CGPoint(x: 500, y: 200))
+        spawnBullet(speedOf: CGVector(dx: randomNum,dy: 500-randomNum), at: CGPoint(x: 300, y: 200))
+        randomNum = Int(arc4random_uniform(500))
+        spawnBullet(speedOf: CGVector(dx: randomNum,dy: 500-randomNum), at: CGPoint(x: 500, y: 200))
     }
     
     func gameOver()
