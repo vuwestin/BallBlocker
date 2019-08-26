@@ -69,7 +69,7 @@ class GameScene: SKScene {
         
         redBall.position = CGPoint(x: self.frame.minX + redBall.size.height, y: self.frame.midY)
         blueBall.position = CGPoint(x: self.frame.maxX - redBall.size.height, y: self.frame.midY)
-        //change this later to align with landscape
+       
         
         redBall.physicsBody = SKPhysicsBody(circleOfRadius: redBall.size.width/2)
         redBall.physicsBody?.categoryBitMask = PhysicsCategories.redBallCategory
@@ -85,12 +85,7 @@ class GameScene: SKScene {
         blueBall.physicsBody?.allowsRotation = false
         
         let scr = frame.size
-//        let c = SKConstraint.positionX(SKRange(lowerLimit: 0.0 + redBall.size.width/2, upperLimit: scr.width - redBall.size.width/2), y: SKRange(lowerLimit: 0.0 + redBall.size.width/2, upperLimit: scr.height - redBall.size.width/2))
-        //only closes off to center of circle
-        //adjust to account for the rest of the circle
-        
-        //tankOne.constraints = [ c ]
-        //tankTwo.constraints = [ c ]
+
 
         let dpadShape = SKShapeNode(circleOfRadius: 75)
         dpadShape.strokeColor = UIColor.white
@@ -109,9 +104,9 @@ class GameScene: SKScene {
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
         
         self.physicsBody = border
-        //self.physicsBody?.categoryBitMask = PhysicsCategories.none //uncomment to make balls go off screen
+
         self.physicsBody?.collisionBitMask = PhysicsCategories.none
-        self.physicsBody?.categoryBitMask = PhysicsCategories.borderCategory //uncomment to make balls go off screen
+        self.physicsBody?.categoryBitMask = PhysicsCategories.borderCategory 
         
         self.addChild(redBall)
         self.addChild(blueBall)
@@ -234,16 +229,7 @@ extension GameScene: SKPhysicsContactDelegate{
             firstBody = contact.bodyB
             secondBody = contact.bodyA
         }
-//        if let unwrappedSecondBody = secondBody.node?.name{
-//            if unwrappedSecondBody == "tankOne"{
-//                print("tank one sucks")
-//            }
-//            else if unwrappedSecondBody == "tankTwo"{
-//                print("tank two sucks")
-//                //firstBody.applyImpulse(CGVector(dx: -100 , dy:0 ))
-//                print(firstBody.node?.position)
-//            }
-     //   }
+
         if ((firstBody.categoryBitMask & PhysicsCategories.bulletCategory > 0) && (secondBody.categoryBitMask & PhysicsCategories.redBallCategory > 0))
         {
             gameOver()
